@@ -33,4 +33,4 @@ VITE_GEMINI_API_KEY=tu_api_key_de_gemini
 
 - **NUNCA** subas el archivo `.env.local` a GitHub
 - El archivo `.gitignore` ya está configurado para proteger las credenciales
-- Mantén las credenciales seguras y no las compartas 
+- Mantén las credenciales seguras y no las compartas
