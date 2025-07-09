@@ -132,6 +132,9 @@ service-account-*.json
 credentials.json
 google-credentials.json
 gemini-credentials.json
+gemini-*.json
+*-credentials.json
+*-f24362f12af6.json
 
 # Archivos de configuración de APIs
 api-keys.txt
@@ -147,4 +150,8 @@ secrets.txt
 
 # Archivos de configuración de servicios
 supabase-credentials.json
-firebase-credentials.json 
+firebase-credentials.json
+
+# Directorios específicos de credenciales
+src/config/*.json
+config/*.json 

@@ -1,20 +1,26 @@
 // Configuración para Gemini AI
-// Las credenciales se cargan desde el archivo gemini-credentials.json
+// Las credenciales se cargan desde variables de entorno
 
 export const geminiConfig = {
-  projectId: 'hogarzen',
-  // Las credenciales se cargarán dinámicamente desde el archivo JSON
-  credentialsPath: './src/config/gemini-credentials.json'
+  projectId: import.meta.env.VITE_GEMINI_PROJECT_ID || 'hogarzen',
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+  // Las credenciales se cargarán desde variables de entorno
 }
 
-// Función para cargar las credenciales de Gemini
-export const loadGeminiCredentials = async () => {
-  try {
-    const response = await fetch(geminiConfig.credentialsPath)
-    const credentials = await response.json()
-    return credentials
-  } catch (error) {
-    console.error('Error cargando credenciales de Gemini:', error)
+// Función para verificar si las credenciales están disponibles
+export const isGeminiConfigured = (): boolean => {
+  return !!(geminiConfig.apiKey && geminiConfig.projectId)
+}
+
+// Función para obtener la configuración de Gemini
+export const getGeminiConfig = () => {
+  if (!isGeminiConfigured()) {
+    console.warn('Gemini AI no está configurado. Verifica las variables de entorno.')
     return null
+  }
+  
+  return {
+    projectId: geminiConfig.projectId,
+    apiKey: geminiConfig.apiKey
   }
 } 
