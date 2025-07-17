@@ -5,31 +5,6 @@ import { CheckCircle, Brain, Zap, ArrowRight } from 'lucide-react'
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-zen-50 via-white to-primary-50">
-      {/* Header */}
-      <header className="container mx-auto px-4 py-6">
-        <nav className="flex items-center justify-between">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-2"
-          >
-            <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
-              <CheckCircle className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-2xl font-bold text-gradient">HogarZen</span>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-4"
-          >
-            <button className="btn-secondary">Demo</button>
-            <button className="btn-primary">Iniciar Sesión</button>
-          </motion.div>
-        </nav>
-      </header>
-
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center max-w-4xl mx-auto">
@@ -59,11 +34,17 @@ const Home: React.FC = () => {
             transition={{ delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <button className="btn-primary text-lg px-8 py-4 flex items-center space-x-2">
-              <span>Probar Demo</span>
+            <button 
+              onClick={() => window.location.href = '/auth'}
+              className="btn-primary text-lg px-8 py-4 flex items-center space-x-2"
+            >
+              <span>Comenzar Ahora</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="btn-secondary text-lg px-8 py-4">
+            <button 
+              onClick={() => window.location.href = '/auth?mode=register'}
+              className="btn-secondary text-lg px-8 py-4"
+            >
               Registrarse Gratis
             </button>
           </motion.div>
@@ -122,7 +103,10 @@ const Home: React.FC = () => {
           <p className="text-primary-100 mb-6">
             Únete a miles de personas que ya confían en HogarZen para mantener su hogar seguro.
           </p>
-          <button className="bg-white text-primary-600 font-semibold py-3 px-8 rounded-lg hover:bg-primary-50 transition-colors">
+          <button 
+            onClick={() => window.location.href = '/auth'}
+            className="bg-white text-primary-600 font-semibold py-3 px-8 rounded-lg hover:bg-primary-50 transition-colors"
+          >
             Comenzar Ahora
           </button>
         </motion.div>
