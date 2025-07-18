@@ -1,137 +1,209 @@
-# 🏠 HogarZen - Tu Asistente Doméstico Inteligente
+# 🏠 HogarZen - Gestión Inteligente del Hogar
 
-[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue.svg)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.17-38B2AC.svg)](https://tailwindcss.com/)
-[![Vite](https://img.shields.io/badge/Vite-5.0.8-646CFF.svg)](https://vitejs.dev/)
-[![Supabase](https://img.shields.io/badge/Supabase-2.39.0-3ECF8E.svg)](https://supabase.com/)
+HogarZen es una aplicación web moderna para la gestión inteligente de tareas del hogar, construida con React, Supabase y Gemini AI.
 
-> ¿Te pasa que sales de casa y dudas si apagaste la plancha? HogarZen es tu solución.
+## 🚀 Características
 
-## 🎯 Descripción
+- ✅ **Gestión de Tareas**: CRUD completo con categorización
+- ✅ **Autenticación**: Sistema seguro con Supabase Auth
+- ✅ **IA Integrada**: Chatbot inteligente con Gemini AI
+- ✅ **Interfaz Moderna**: Diseño responsive con Tailwind CSS
+- ✅ **Tiempo Real**: Notificaciones y actualizaciones en vivo
+- ✅ **Tema Oscuro**: Soporte para modo claro/oscuro
 
-HogarZen es una aplicación web inteligente que te ayuda a comprobar fácilmente si has realizado todas las tareas importantes del hogar antes de salir, reduciendo la ansiedad y los olvidos comunes.
-
-### ✨ Características Principales
-
-- ✅ **Checklist Diario Inteligente** - Lista personalizable de tareas con estado visual
-- 🧠 **IA Personalizada** - Sugerencias basadas en patrones y clima local (Gemini AI)
-- 🧘 **Modo "Resumen Zen"** - Confirmación rápida de que todo está bajo control
-- 📊 **Historial y Patrones** - Visualización semanal de hábitos y olvidos
-- 👤 **Perfil Personalizado** - Configuración según zona climática y preferencias
-- 🎮 **Modo Demo** - Prueba la app sin registrarte
-
-## 🚀 Tecnologías
-
-- **Frontend**: React 18 + TypeScript + Vite
-- **Estilos**: Tailwind CSS + Framer Motion
-- **Base de Datos**: Supabase (PostgreSQL)
-- **IA**: Google Gemini AI
-- **Notificaciones**: SweetAlert2 + React Confetti
-- **Enrutamiento**: React Router DOM
-
-## 📦 Instalación
-
-### Prerrequisitos
-
-- Node.js 18+ 
-- npm o yarn
-
-### Pasos de Instalación
-
-1. **Clona el repositorio**
-```bash
-git clone https://github.com/titicuevas/HogarZen.git
-cd HogarZen
-```
-
-2. **Instala las dependencias del frontend**
-```bash
-cd frontend
-npm install
-```
-
-3. **Configura las variables de entorno**
-```bash
-# Crea un archivo .env.local en la carpeta frontend
-VITE_SUPABASE_URL=tu_url_de_supabase
-VITE_SUPABASE_ANON_KEY=tu_clave_anonima_de_supabase
-```
-
-4. **Inicia el servidor de desarrollo**
-```bash
-npm run dev
-```
-
-La aplicación estará disponible en `http://localhost:3000`
-
-## 🏗️ Estructura del Proyecto
+## 🏗️ Arquitectura
 
 ```
 hogarzen/
-├── frontend/                 # Aplicación React
+├── frontend/          # Aplicación React + Vite
 │   ├── src/
-│   │   ├── components/      # Componentes reutilizables
-│   │   ├── pages/          # Páginas de la aplicación
-│   │   ├── hooks/          # Custom hooks
-│   │   ├── utils/          # Utilidades y helpers
-│   │   ├── types/          # Tipos TypeScript
-│   │   ├── config/         # Configuración (Supabase, Gemini)
-│   │   └── styles/         # Archivos de estilos CSS
-│   ├── public/             # Archivos estáticos
-│   └── package.json
-├── backend/                # Futura API y lógica de servidor
-└── README.md
+│   │   ├── components/    # Componentes UI reutilizables
+│   │   ├── contexts/      # Contextos de React
+│   │   ├── hooks/         # Hooks personalizados
+│   │   ├── pages/         # Páginas de la aplicación
+│   │   ├── services/      # Servicios de API
+│   │   └── config/        # Configuración centralizada
+│   ├── Dockerfile         # Configuración Docker
+│   └── docker-compose.yml # Orquestación de servicios
+├── backend/           # API y servicios backend
+│   ├── src/
+│   ├── Dockerfile
+│   └── docker-compose.yml
+└── README.md          # Este archivo
 ```
 
-## 🎨 Características de Diseño
+## 🛠️ Tecnologías
 
-- **Diseño Responsivo** - Funciona en móvil, tablet y desktop
-- **Animaciones Suaves** - Transiciones con Framer Motion
-- **Paleta de Colores Zen** - Colores relajantes y profesionales
-- **Tipografía Inter** - Fuente moderna y legible
-- **Componentes Reutilizables** - Sistema de diseño consistente
+### Frontend
+- **React 18** - Biblioteca de UI
+- **TypeScript** - Tipado estático
+- **Vite** - Build tool y dev server
+- **Tailwind CSS** - Framework de estilos
+- **React Router** - Navegación
+- **Lucide React** - Iconos
 
-## 🔧 Scripts Disponibles
+### Backend
+- **Supabase** - Backend as a Service
+- **PostgreSQL** - Base de datos
+- **Row Level Security** - Seguridad de datos
+
+### IA
+- **Gemini AI** - Chatbot inteligente
+- **Google AI Studio** - Gestión de API keys
+
+## 🚀 Inicio Rápido
+
+### Opción 1: Desarrollo Local
+
+#### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+#### Backend
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+### Opción 2: Docker (Recomendado)
 
 ```bash
-# Desarrollo
-npm run dev          # Inicia servidor de desarrollo
-npm run build        # Construye para producción
-npm run preview      # Vista previa de la build
-npm run lint         # Ejecuta ESLint
+# Clonar repositorio
+git clone https://github.com/titicuevas/HogarZen.git
+cd HogarZen
+
+# Configurar variables de entorno
+cp frontend/.env.example frontend/.env.local
+cp backend/.env.example backend/.env.local
+
+# Editar archivos .env.local con tus credenciales
+
+# Iniciar con Docker
+docker-compose up --build
 ```
 
-## 🗄️ Base de Datos (Supabase)
+## ⚙️ Configuración
 
-### Tablas Principales
+### Variables de Entorno
 
-- **users** - Información de usuarios
-- **tasks** - Tareas disponibles
-- **user_tasks** - Tareas del usuario por fecha
-- **recommendations** - Recomendaciones de IA
+#### Frontend (.env.local)
+```bash
+# Supabase
+VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
+VITE_SUPABASE_ANON_KEY=tu_clave_anonima
 
-## 🤖 Integración con IA (Gemini)
+# Gemini AI
+VITE_GEMINI_API_KEY=tu_api_key_gemini
+```
 
-- Análisis de patrones de uso
-- Sugerencias personalizadas basadas en clima
-- Recomendaciones para reducir olvidos
-- Resúmenes semanales inteligentes
+#### Backend (.env.local)
+```bash
+# Supabase
+SUPABASE_URL=https://tu-proyecto.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
+```
 
-## 🔒 Seguridad
+### Obtener Credenciales
 
-- Credenciales protegidas con `.gitignore`
-- Autenticación segura con Supabase
-- Variables de entorno para configuraciones sensibles
+1. **Supabase**: [supabase.com](https://supabase.com)
+   - Crea un proyecto
+   - Ve a Settings > API
+   - Copia URL y keys
 
-## 🚀 Roadmap
+2. **Gemini AI**: [makersuite.google.com](https://makersuite.google.com/app/apikey)
+   - Crea una API key
+   - Copia la clave generada
 
-- [ ] Dashboard principal con checklist
-- [ ] Sistema de autenticación
-- [ ] Integración completa con Gemini AI
-- [ ] Modo demo funcional
-- [ ] Notificaciones push
-- [ ] App móvil (React Native)
+## 📁 Estructura del Proyecto
+
+### Frontend
+```
+frontend/src/
+├── components/          # Componentes UI
+│   ├── auth/           # Componentes de autenticación
+│   ├── common/         # Componentes comunes
+│   ├── dashboard/      # Componentes del dashboard
+│   ├── layout/         # Layouts y navegación
+│   └── ui/             # Componentes base UI
+├── contexts/           # Contextos de React
+├── hooks/              # Hooks personalizados
+├── pages/              # Páginas de la aplicación
+├── services/           # Servicios de API
+├── config/             # Configuración centralizada
+└── types/              # Tipos TypeScript
+```
+
+### Backend
+```
+backend/src/
+├── api/                # Endpoints de la API
+├── services/           # Lógica de negocio
+├── models/             # Modelos de datos
+├── middleware/         # Middleware personalizado
+└── utils/              # Utilidades
+```
+
+## 🎯 Principios Aplicados
+
+- **SOLID**: Separación de responsabilidades
+- **DRY**: No repetición de código
+- **Clean Architecture**: Arquitectura limpia
+- **Type Safety**: Tipado completo con TypeScript
+- **Security First**: Seguridad desde el diseño
+
+## 🐳 Docker
+
+### Desarrollo
+```bash
+docker-compose up --build
+```
+
+### Producción
+```bash
+docker-compose -f docker-compose.prod.yml up --build
+```
+
+## 📝 Scripts Disponibles
+
+### Frontend
+```bash
+npm run dev          # Servidor de desarrollo
+npm run build        # Build de producción
+npm run preview      # Preview del build
+npm run lint         # Linting
+npm run test         # Tests
+```
+
+### Backend
+```bash
+npm run dev          # Servidor de desarrollo
+npm run build        # Build de producción
+npm run start        # Servidor de producción
+npm run test         # Tests
+```
+
+## 🔧 Desarrollo
+
+### Estructura de Commits
+```
+feat: nueva característica
+fix: corrección de bug
+docs: documentación
+style: cambios de estilo
+refactor: refactorización
+test: tests
+chore: tareas de mantenimiento
+```
+
+### Branches
+- `main` - Código de producción
+- `develop` - Código en desarrollo
+- `feature/*` - Nuevas características
+- `hotfix/*` - Correcciones urgentes
 
 ## 🤝 Contribuir
 
@@ -145,10 +217,15 @@ npm run lint         # Ejecuta ESLint
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
-## 👨‍💻 Autor
+## 📞 Soporte
 
-**Titicuevas** - [GitHub](https://github.com/titicuevas)
+- **Email**: hola@hogarzen.com
+- **GitHub**: [Issues](https://github.com/titicuevas/HogarZen/issues)
+- **Documentación**: [Wiki](https://github.com/titicuevas/HogarZen/wiki)
 
----
+## 🙏 Agradecimientos
 
-⭐ Si te gusta este proyecto, ¡dale una estrella en GitHub! 
+- [Supabase](https://supabase.com) por el backend as a service
+- [Google AI](https://ai.google.dev/) por Gemini AI
+- [Vite](https://vitejs.dev/) por el build tool
+- [Tailwind CSS](https://tailwindcss.com/) por el framework de estilos 

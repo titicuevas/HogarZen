@@ -245,13 +245,13 @@ const AuthButtons: React.FC = () => {
   return (
     <div className="flex items-center space-x-4">
       <Link
-        to="/auth"
+        to="/login"
         className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
       >
         Iniciar sesión
       </Link>
       <Link
-        to="/auth?mode=register"
+        to="/login?mode=register"
         className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
       >
         Registrarse
