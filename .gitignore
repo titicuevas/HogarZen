@@ -18,7 +18,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
-.env.example
+# Permitir archivos de ejemplo
+!.env.example
 
 # Credenciales y configuración sensible
 *.key
