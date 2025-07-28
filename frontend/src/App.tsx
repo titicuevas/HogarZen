@@ -3,16 +3,21 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './contexts/AuthContext'
 import { TaskProvider } from './contexts/TaskContext'
 import { NotificationProvider } from './contexts/NotificationContext'
+import { ThemeProvider } from './contexts/ThemeContext'
 import { ErrorBoundary } from './components/common/ErrorBoundary'
 import { ConfigChecker } from './components/common/ConfigChecker'
 import { AuthLayout, PublicLayout, DashboardLayout } from './components/layout/Layout'
 import Home from './pages/Home'
-import Auth from './pages/Auth'
+import Login from './pages/Login'
+import Registro from './pages/Registro'
 import Help from './pages/Help'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Cookies from './pages/Cookies'
+import Contact from './pages/Contact'
 import { Dashboard } from './components/dashboard/Dashboard'
+import { ChecklistDashboard } from './components/dashboard/ChecklistDashboard'
+
 import { LoadingSpinner } from './components/ui/LoadingSpinner'
 import { ProtectedRoute } from './components/auth/ProtectedRoute'
 import './index.css'
@@ -24,9 +29,10 @@ function App() {
   return (
     <ErrorBoundary>
       <ConfigChecker />
-      <NotificationProvider>
-        <AuthProvider>
-          <TaskProvider>
+      <ThemeProvider>
+        <NotificationProvider>
+          <AuthProvider>
+            <TaskProvider>
             <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
               <div className="App">
                 <Routes>
@@ -77,14 +83,24 @@ function App() {
                     } 
                   />
                   
-                  {/* Ruta de autenticación */}
+                  <Route 
+                    path="/contacto" 
+                    element={
+                      <PublicLayout>
+                        <Contact />
+                      </PublicLayout>
+                    } 
+                  />
+                  
+                  {/* Rutas de autenticación */}
                   <Route 
                     path="/login" 
-                    element={
-                      <AuthLayout>
-                        <Auth />
-                      </AuthLayout>
-                    } 
+                    element={<Login />} 
+                  />
+                  
+                  <Route 
+                    path="/registro" 
+                    element={<Registro />} 
                   />
                   
                   {/* Redirección de /auth a /login para compatibilidad */}
@@ -105,24 +121,25 @@ function App() {
                     } 
                   />
                   
-                  {/* Rutas adicionales protegidas */}
+
+                  
                   <Route 
-                    path="/tareas" 
+                    path="/calendario" 
                     element={
                       <ProtectedRoute>
                         <DashboardLayout>
-                          <div>Página de Tareas (en desarrollo)</div>
+                          <Dashboard />
                         </DashboardLayout>
                       </ProtectedRoute>
                     } 
                   />
                   
                   <Route 
-                    path="/analiticas" 
+                    path="/analisis" 
                     element={
                       <ProtectedRoute>
                         <DashboardLayout>
-                          <div>Página de Análisis (en desarrollo)</div>
+                          <Dashboard />
                         </DashboardLayout>
                       </ProtectedRoute>
                     } 
@@ -133,11 +150,24 @@ function App() {
                     element={
                       <ProtectedRoute>
                         <DashboardLayout>
-                          <div>Página de Configuración (en desarrollo)</div>
+                          <Dashboard />
                         </DashboardLayout>
                       </ProtectedRoute>
                     } 
                   />
+                  
+                  <Route 
+                    path="/checklists" 
+                    element={
+                      <ProtectedRoute>
+                        <DashboardLayout>
+                          <ChecklistDashboard />
+                        </DashboardLayout>
+                      </ProtectedRoute>
+                    } 
+                  />
+                  
+
                   
                   {/* Ruta por defecto */}
                   <Route path="*" element={<Navigate to="/" replace />} />
@@ -147,6 +177,7 @@ function App() {
           </TaskProvider>
         </AuthProvider>
       </NotificationProvider>
+    </ThemeProvider>
     </ErrorBoundary>
   )
 }

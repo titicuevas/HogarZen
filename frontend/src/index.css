@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import './styles/components.css';
 @import './styles/animations.css';
+@import './styles/responsive.css';
+@import './styles/mobile.css';
+@import './styles/tablet.css';
+@import './styles/desktop.css';
 
 @tailwind base;
 @tailwind components;
@@ -12,6 +16,176 @@
   }
   
   body {
-    @apply bg-zen-50 text-zen-900;
+    @apply bg-zen-50 text-zen-900 dark:bg-gray-900 dark:text-gray-100;
+  }
+}
+
+/* =====================================================
+   ESTILOS DEL MODO OSCURO MEJORADO
+   ===================================================== */
+@layer utilities {
+  /* Transiciones suaves para cambios de tema */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+  
+  /* Mejoras específicas para modo oscuro */
+  .dark {
+    color-scheme: dark;
+  }
+  
+  /* Cards con mejor contraste en modo oscuro */
+  .dark .card {
+    @apply bg-gray-800 border-gray-700;
+    box-shadow: 0 10px 15px -3px rgba(17, 24, 39, 0.4), 0 4px 6px -2px rgba(17, 24, 39, 0.4);
+  }
+  
+  /* Botones con mejor contraste */
+  .dark .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white;
+    box-shadow: 0 10px 15px -3px rgba(17, 24, 39, 0.4), 0 4px 6px -2px rgba(17, 24, 39, 0.4);
+  }
+  
+  .dark .btn-secondary {
+    @apply bg-gray-700 hover:bg-gray-600 text-gray-100 border-gray-600;
+  }
+  
+  /* Inputs y formularios */
+  .dark input, .dark textarea, .dark select {
+    @apply bg-gray-800 border-gray-600 text-gray-100 placeholder-gray-400;
+  }
+  
+  .dark input:focus, .dark textarea:focus, .dark select:focus {
+    @apply border-primary-500 ring-primary-500/20;
+  }
+  
+  /* Scrollbar personalizada para modo oscuro */
+  .dark ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .dark ::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 4px;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+  
+  /* Mejoras para elementos específicos */
+  .dark .bg-white {
+    @apply bg-gray-800;
+  }
+  
+  .dark .text-gray-900 {
+    @apply text-gray-100;
+  }
+  
+  .dark .text-gray-700 {
+    @apply text-gray-300;
+  }
+  
+  .dark .text-gray-600 {
+    @apply text-gray-400;
+  }
+  
+  .dark .border-gray-200 {
+    @apply border-gray-700;
+  }
+  
+  .dark .border-gray-300 {
+    @apply border-gray-600;
+  }
+  
+  /* Sombras mejoradas para modo oscuro */
+  .dark .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(17, 24, 39, 0.2);
+  }
+  
+  .dark .shadow {
+    box-shadow: 0 1px 3px 0 rgba(17, 24, 39, 0.3), 0 1px 2px 0 rgba(17, 24, 39, 0.3);
+  }
+  
+  .dark .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(17, 24, 39, 0.4), 0 4px 6px -2px rgba(17, 24, 39, 0.4);
+  }
+  
+  /* Hover states mejorados */
+  .dark .hover\:bg-gray-100:hover {
+    @apply bg-gray-700;
+  }
+  
+  .dark .hover\:bg-gray-50:hover {
+    @apply bg-gray-800;
+  }
+  
+  /* Mejoras específicas para el header */
+  .dark header {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  /* Mejoras para el sidebar */
+  .dark aside {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  /* Mejoras para botones de navegación */
+  .dark .bg-primary-100 {
+    @apply bg-primary-900/30;
+  }
+  
+  .dark .text-primary-700 {
+    @apply text-primary-300;
+  }
+  
+  /* Mejoras para elementos de usuario */
+  .dark .hover\:bg-red-50:hover {
+    @apply bg-red-900/20;
+  }
+  
+  .dark .hover\:bg-red-900\/20:hover {
+    @apply bg-red-900/30;
+  }
+  
+  /* Mejoras para iconos en modo oscuro */
+  .dark .text-zen-600 {
+    @apply text-gray-300;
+  }
+  
+  .dark .text-zen-400 {
+    @apply text-gray-400;
+  }
+  
+  /* Mejoras para elementos de progreso */
+  .dark .bg-gray-200 {
+    @apply bg-gray-600;
+  }
+  
+  /* Mejoras para elementos de estado */
+  .dark .bg-green-50 {
+    @apply bg-green-900/20;
+  }
+  
+  .dark .bg-orange-50 {
+    @apply bg-orange-900/20;
+  }
+  
+  .dark .bg-blue-50 {
+    @apply bg-blue-900/20;
+  }
+  
+  .dark .bg-purple-50 {
+    @apply bg-purple-900/20;
+  }
+  
+  .dark .bg-red-50 {
+    @apply bg-red-900/20;
   }
 }

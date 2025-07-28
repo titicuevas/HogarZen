@@ -1,14 +1,29 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X, ChevronDown, User, Settings, LogOut } from 'lucide-react'
+import { ThemeToggle } from '../ui/ThemeToggle'
 
 // =====================================================
-// COMPONENTE HEADER
+// COMPONENTE HEADER RESPONSIVE
 // =====================================================
 export const Header: React.FC = () => {
   const { user, logout, isAuthenticated } = useAuth()
   const navigate = useNavigate()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  // =====================================================
+  // EFECTOS
+  // =====================================================
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // =====================================================
   // MANEJADORES
@@ -22,154 +37,58 @@ export const Header: React.FC = () => {
     }
   }
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
   // =====================================================
   // RENDERIZADO
   // =====================================================
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50' 
+        : 'bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
+          <motion.div 
+            className="flex items-center"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link to="/" className="flex items-center space-x-2 group">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-200">
                 <span className="text-white font-bold text-lg">H</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">HogarZen</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200">
+                HogarZen
+              </span>
             </Link>
-          </div>
-
-          {/* Navegación principal */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {isAuthenticated ? (
-              <>
-                <Link
-                  to="/dashboard"
-                  className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  to="/tasks"
-                  className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  Tareas
-                </Link>
-                <Link
-                  to="/analytics"
-                  className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  Análisis
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  to="/"
-                  className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  Inicio
-                </Link>
-                <Link
-                  to="/features"
-                  className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  Características
-                </Link>
-              </>
-            )}
-          </nav>
+          </motion.div>
 
           {/* Acciones del usuario */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            {/* Botón de cambio de tema */}
+            <ThemeToggle variant="minimal" size="sm" />
+            
             {isAuthenticated ? (
               <UserMenu user={user} onLogout={handleLogout} />
             ) : (
               <AuthButtons />
             )}
 
-            {/* Menú móvil */}
-            <button
-              onClick={toggleMenu}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-gray-100"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+
           </div>
         </div>
 
-        {/* Menú móvil desplegable */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
-              {isAuthenticated ? (
-                <>
-                  <Link
-                    to="/dashboard"
-                    className="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Dashboard
-                  </Link>
-                  <Link
-                    to="/tasks"
-                    className="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Tareas
-                  </Link>
-                  <Link
-                    to="/analytics"
-                    className="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Análisis
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link
-                    to="/"
-                    className="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Inicio
-                  </Link>
-                  <Link
-                    to="/features"
-                    className="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Características
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-        )}
+
       </div>
     </header>
   )
 }
 
+
+
 // =====================================================
-// COMPONENTE MENÚ DE USUARIO
+// COMPONENTE MENÚ DE USUARIO RESPONSIVE
 // =====================================================
 interface UserMenuProps {
   user: any
@@ -179,80 +98,111 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({ user, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  // Cerrar menú al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen && !(event.target as Element).closest('.user-menu')) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOpen])
+
   return (
-    <div className="relative">
-      <button
+    <div className="relative user-menu">
+      <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        className="flex items-center space-x-2 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+        <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-md">
           <span className="text-white font-medium text-sm">
             {user?.name?.charAt(0)?.toUpperCase() || 'U'}
           </span>
         </div>
-        <span className="hidden md:block text-gray-700">{user?.name}</span>
-        <svg
-          className="w-4 h-4 text-gray-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+        <span className="hidden sm:block text-gray-700 font-medium">{user?.name}</span>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
+          <ChevronDown className="w-4 h-4 text-gray-400" />
+        </motion.div>
+      </motion.button>
 
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-          <Link
-            to="/profile"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl py-2 z-50 border border-gray-200"
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
           >
-            Perfil
-          </Link>
-          <Link
-            to="/settings"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            onClick={() => setIsOpen(false)}
-          >
-            Configuración
-          </Link>
-          <hr className="my-1" />
-          <button
-            onClick={() => {
-              onLogout()
-              setIsOpen(false)
-            }}
-            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-          >
-            Cerrar sesión
-          </button>
-        </div>
-      )}
+            {/* Información del usuario */}
+            <div className="px-4 py-3 border-b border-gray-100">
+              <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+              <p className="text-xs text-gray-500">{user?.email}</p>
+            </div>
+
+            {/* Opciones del menú */}
+            <div className="py-1">
+              <Link
+                to="/profile"
+                className="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                onClick={() => setIsOpen(false)}
+              >
+                <User className="w-4 h-4" />
+                <span>Perfil</span>
+              </Link>
+              <Link
+                to="/settings"
+                className="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                onClick={() => setIsOpen(false)}
+              >
+                <Settings className="w-4 h-4" />
+                <span>Configuración</span>
+              </Link>
+            </div>
+
+            {/* Separador */}
+            <div className="border-t border-gray-100 my-1" />
+
+            {/* Cerrar sesión */}
+            <button
+              onClick={() => {
+                onLogout()
+                setIsOpen(false)
+              }}
+              className="flex items-center space-x-3 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Cerrar sesión</span>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
 
 // =====================================================
-// COMPONENTE BOTONES DE AUTENTICACIÓN
+// COMPONENTE BOTONES DE AUTENTICACIÓN RESPONSIVE
 // =====================================================
 const AuthButtons: React.FC = () => {
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center space-x-2 sm:space-x-4">
       <Link
         to="/login"
-        className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+        className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-50"
       >
         Iniciar sesión
       </Link>
       <Link
-        to="/login?mode=register"
-        className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+        to="/registro"
+        className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg"
       >
         Registrarse
       </Link>

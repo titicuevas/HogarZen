@@ -127,7 +127,7 @@ export class ValidationUtils {
   /**
    * Valida formulario de registro completo
    */
-  static validateRegisterForm(name: string, email: string, password: string, confirmPassword: string): { isValid: boolean; errors: Record<string, string> } {
+  static validateRegisterForm(name: string, email: string, password: string, confirmPassword: string, acceptTerms: boolean): { isValid: boolean; errors: Record<string, string> } {
     const errors: Record<string, string> = {}
 
     const nameError = this.getNameError(name)
@@ -141,6 +141,10 @@ export class ValidationUtils {
 
     const confirmPasswordError = this.getConfirmPasswordError(password, confirmPassword)
     if (confirmPasswordError) errors.confirmPassword = confirmPasswordError
+
+    if (!acceptTerms) {
+      errors.acceptTerms = 'Debes aceptar los términos y condiciones'
+    }
 
     return {
       isValid: Object.keys(errors).length === 0,

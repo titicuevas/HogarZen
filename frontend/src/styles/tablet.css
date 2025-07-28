@@ -1,0 +1,475 @@
+/* =====================================================
+   TABLET STYLES - HOGARZEN
+   ===================================================== */
+
+/* =====================================================
+   TABLET BREAKPOINTS (768px - 1023px)
+   ===================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  
+  /* =====================================================
+     TABLET CONTAINERS
+     ===================================================== */
+  
+  .tablet-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .tablet-wide-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  /* =====================================================
+     TABLET NAVIGATION
+     ===================================================== */
+  
+  .tablet-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .tablet-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .tablet-nav-item {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .tablet-nav-item:hover {
+    background: #f3f4f6;
+    color: #0ea5e9;
+  }
+  
+  .tablet-nav-item.active {
+    background: #0ea5e9;
+    color: white;
+  }
+  
+  /* =====================================================
+     TABLET HEADER
+     ===================================================== */
+  
+  .tablet-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 1.5rem;
+    z-index: 40;
+  }
+  
+  .tablet-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  /* =====================================================
+     TABLET CARDS
+     ===================================================== */
+  
+  .tablet-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .tablet-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tablet-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .tablet-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+  }
+  
+  /* =====================================================
+     TABLET GRIDS
+     ===================================================== */
+  
+  .tablet-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .tablet-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .tablet-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  
+  /* =====================================================
+     TABLET BUTTONS
+     ===================================================== */
+  
+  .tablet-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .tablet-button-primary {
+    background: #0ea5e9;
+    color: white;
+  }
+  
+  .tablet-button-primary:hover {
+    background: #0284c7;
+    transform: translateY(-1px);
+  }
+  
+  .tablet-button-secondary {
+    background: #f3f4f6;
+    color: #374151;
+  }
+  
+  .tablet-button-secondary:hover {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+  }
+  
+  /* =====================================================
+     TABLET FORMS
+     ===================================================== */
+  
+  .tablet-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .tablet-form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .tablet-form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tablet-form-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background: white;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .tablet-form-input:focus {
+    outline: none;
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  }
+  
+  /* =====================================================
+     TABLET LAYOUTS
+     ===================================================== */
+  
+  .tablet-sidebar-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    min-height: 100vh;
+  }
+  
+  .tablet-sidebar {
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    padding: 1.5rem;
+  }
+  
+  .tablet-main {
+    padding: 1.5rem;
+  }
+  
+  /* =====================================================
+     TABLET TABS
+     ===================================================== */
+  
+  .tablet-tabs {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tablet-tab {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .tablet-tab:hover {
+    color: #374151;
+  }
+  
+  .tablet-tab.active {
+    color: #0ea5e9;
+    border-bottom-color: #0ea5e9;
+  }
+  
+  /* =====================================================
+     TABLET MODALS
+     ===================================================== */
+  
+  .tablet-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 70;
+    padding: 2rem;
+  }
+  
+  .tablet-modal-content {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  /* =====================================================
+     TABLET LISTS
+     ===================================================== */
+  
+  .tablet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .tablet-list-item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .tablet-list-item:hover {
+    background: #f9fafb;
+  }
+  
+  .tablet-list-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* =====================================================
+     TABLET SEARCH
+     ===================================================== */
+  
+  .tablet-search {
+    position: relative;
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tablet-search-input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 2.5rem;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background: white;
+  }
+  
+  .tablet-search-icon {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+  }
+  
+  /* =====================================================
+     TABLET NOTIFICATIONS
+     ===================================================== */
+  
+  .tablet-notification {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 80;
+    max-width: 400px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .tablet-notification.show {
+    transform: translateX(0);
+  }
+  
+  /* =====================================================
+     TABLET HERO SECTIONS
+     ===================================================== */
+  
+  .tablet-hero {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+    color: white;
+  }
+  
+  .tablet-hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .tablet-hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  /* =====================================================
+     TABLET SECTIONS
+     ===================================================== */
+  
+  .tablet-section {
+    padding: 3rem 2rem;
+  }
+  
+  .tablet-section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #111827;
+  }
+  
+  /* =====================================================
+     TABLET UTILITIES
+     ===================================================== */
+  
+  .tablet-only {
+    display: block;
+  }
+  
+  .tablet-hidden {
+    display: none;
+  }
+  
+  .tablet-text-center {
+    text-align: center;
+  }
+  
+  .tablet-text-left {
+    text-align: left;
+  }
+  
+  .tablet-text-right {
+    text-align: right;
+  }
+  
+  /* =====================================================
+     TABLET PERFORMANCE
+     ===================================================== */
+  
+  .tablet-will-change {
+    will-change: transform;
+  }
+  
+  .tablet-gpu-accelerated {
+    transform: translateZ(0);
+  }
+  
+  /* =====================================================
+     TABLET ACCESSIBILITY
+     ===================================================== */
+  
+  .tablet-focus-visible:focus-visible {
+    outline: 2px solid #0ea5e9;
+    outline-offset: 2px;
+  }
+  
+  /* =====================================================
+     TABLET ORIENTATION
+     ===================================================== */
+  
+  @media (orientation: landscape) {
+    .tablet-landscape-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  @media (orientation: portrait) {
+    .tablet-portrait-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+} 

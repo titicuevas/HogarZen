@@ -2,6 +2,10 @@ import React, { ReactNode } from 'react'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
 import { Footer } from './Footer'
+import { AuthHeader } from './AuthHeader'
+import { AuthFooter } from './AuthFooter'
+import CookieBanner from '../common/CookieBanner'
+
 
 // =====================================================
 // TIPOS
@@ -25,7 +29,7 @@ export const Layout: React.FC<LayoutProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`min-h-screen bg-gray-50 flex flex-col ${className}`}>
+    <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col ${className}`}>
       {/* Header */}
       {showHeader && <Header />}
       
@@ -35,8 +39,8 @@ export const Layout: React.FC<LayoutProps> = ({
         {showSidebar && <Sidebar />}
         
         {/* Contenido */}
-        <main className={`flex-1 ${showSidebar ? 'ml-64' : ''}`}>
-          <div className="p-6">
+        <main className={`flex-1 ${showSidebar ? 'lg:ml-64' : ''} pt-16 lg:pt-0 min-h-screen`}>
+          <div className="p-4 lg:p-6 pb-20 lg:pb-6">
             {children}
           </div>
         </main>
@@ -44,6 +48,9 @@ export const Layout: React.FC<LayoutProps> = ({
       
       {/* Footer */}
       {showFooter && <Footer />}
+      
+      {/* Cookie Banner */}
+      <CookieBanner />
     </div>
   )
 }
@@ -53,10 +60,24 @@ export const Layout: React.FC<LayoutProps> = ({
 // =====================================================
 export const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-zen-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {children}
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-zen-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex flex-col">
+      {/* Header específico para auth */}
+      <AuthHeader />
+      
+      {/* Contenido centrado */}
+      <main className="flex-1 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700">
+            {children}
+          </div>
+        </div>
+      </main>
+      
+      {/* Footer específico para auth */}
+      <AuthFooter />
+      
+      {/* Cookie Banner */}
+      <CookieBanner />
     </div>
   )
 }
@@ -66,7 +87,7 @@ export const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 // =====================================================
 export const PublicLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
       <main>
         {children}
@@ -81,7 +102,7 @@ export const PublicLayout: React.FC<{ children: ReactNode }> = ({ children }) =>
 // =====================================================
 export const DashboardLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <Layout showSidebar={true} showHeader={true} showFooter={false}>
+    <Layout showSidebar={true} showHeader={true} showFooter={true}>
       {children}
     </Layout>
   )

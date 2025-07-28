@@ -2,6 +2,20 @@
 // CONFIGURACIÓN DE ENTORNO - PRINCIPIOS SOLID
 // =====================================================
 
+// Extender ImportMeta para incluir env
+declare global {
+  interface ImportMeta {
+    env: {
+      VITE_SUPABASE_URL?: string;
+      VITE_SUPABASE_ANON_KEY?: string;
+      VITE_GEMINI_API_KEY?: string;
+      VITE_API_URL?: string;
+      VITE_DOCKER?: string;
+      MODE?: string;
+    };
+  }
+}
+
 // Interface para la configuración (Interface Segregation Principle)
 interface EnvironmentConfig {
   supabase: {

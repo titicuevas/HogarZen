@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react'
 import { User, AuthState } from '../types'
-import { AuthService } from '../services/authService'
+import { AuthServiceFactory } from '../services/authService'
+import CookieManager from '../utils/cookies'
 
 // =====================================================
 // TIPOS DEL CONTEXTO
@@ -83,6 +84,7 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState)
+  const authService = AuthServiceFactory.create()
 
   // =====================================================
   // INICIALIZACIÓN
@@ -92,15 +94,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       try {
         dispatch({ type: 'SET_LOADING', payload: true })
         
-        const user = await AuthService.getCurrentUser()
+        // Verificar si hay token en cookies
+        const cookieToken = CookieManager.getAuthToken()
+        const cookieUserData = CookieManager.getUserData()
         
-        if (user) {
-          dispatch({ type: 'SET_USER', payload: user })
+        console.log('🔍 Inicializando autenticación...')
+        console.log('🍪 Token en cookies:', !!cookieToken)
+        console.log('👤 Datos de usuario en cookies:', !!cookieUserData)
+        
+        if (cookieToken && cookieUserData) {
+          // Intentar recuperar sesión del backend
+          const validation = await authService.validateToken()
+          
+          if (validation.success) {
+            console.log('✅ Sesión recuperada exitosamente')
+            dispatch({ type: 'SET_USER', payload: cookieUserData })
+          } else {
+            console.log('⚠️ Sesión expirada, limpiando cookies')
+            CookieManager.clearAll()
+            dispatch({ type: 'SET_LOADING', payload: false })
+          }
         } else {
+          console.log('ℹ️ No hay datos de autenticación en cookies')
           dispatch({ type: 'SET_LOADING', payload: false })
         }
       } catch (error) {
-        console.error('Error inicializando autenticación:', error)
+        console.error('❌ Error inicializando autenticación:', error)
+        CookieManager.clearAll()
         dispatch({ type: 'SET_LOADING', payload: false })
       }
     }
@@ -115,14 +135,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true })
       
-      const response = await AuthService.signIn({ email, password })
+      const response = await authService.signIn({ email, password })
       
-      if (response.success && response.data?.user) {
-        // Obtener el perfil completo del usuario
-        const user = await AuthService.getCurrentUser()
-        dispatch({ type: 'SET_USER', payload: user })
+      if (response.success && response.user) {
+        dispatch({ type: 'SET_USER', payload: response.user })
+        dispatch({ type: 'SET_AUTHENTICATED', payload: true })
       } else {
-        throw new Error(response.error || 'Error en el inicio de sesión')
+        throw new Error(response.message || 'Error en el inicio de sesión')
       }
     } catch (error) {
       dispatch({ type: 'SET_LOADING', payload: false })
@@ -134,14 +153,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true })
       
-      const response = await AuthService.signUp({ name, email, password, confirmPassword: password })
+      const response = await authService.signUp({ name, email, password, confirmPassword: password })
       
-      if (response.success && response.data?.user) {
-        // Obtener el perfil completo del usuario
-        const user = await AuthService.getCurrentUser()
-        dispatch({ type: 'SET_USER', payload: user })
+      if (response.success && response.user) {
+        dispatch({ type: 'SET_USER', payload: response.user })
+        dispatch({ type: 'SET_AUTHENTICATED', payload: true })
       } else {
-        throw new Error(response.error || 'Error en el registro')
+        throw new Error(response.message || 'Error en el registro')
       }
     } catch (error) {
       dispatch({ type: 'SET_LOADING', payload: false })
@@ -151,7 +169,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await AuthService.signOut()
+      const response = await authService.signOut()
       
       if (response.success) {
         dispatch({ type: 'LOGOUT' })
@@ -169,13 +187,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       if (!state.user) throw new Error('No hay usuario autenticado')
       
-      const response = await AuthService.updateProfile(state.user.id, updates)
+      // TODO: Implementar actualización de perfil en el backend
+      console.log('🔄 Actualizando perfil de usuario:', updates)
       
-      if (response.success && response.data) {
-        dispatch({ type: 'UPDATE_USER', payload: response.data })
-      } else {
-        throw new Error(response.error || 'Error al actualizar usuario')
-      }
+      // Por ahora, actualizar solo en el estado local
+      dispatch({ type: 'UPDATE_USER', payload: updates })
     } catch (error) {
       console.error('Error actualizando usuario:', error)
       throw error

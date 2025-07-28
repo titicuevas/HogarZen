@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { AuthService } from '../services/authService'
 import { AuthState, User } from '../types'
 
@@ -12,6 +12,9 @@ export const useAuth = () => {
     loading: true,
     isAuthenticated: false
   })
+
+  // Crear instancia del AuthService
+  const authService = useMemo(() => new AuthService(), [])
 
   // Función optimizada para obtener el usuario
   const getCurrentUser = useCallback(async (session: any) => {
@@ -33,7 +36,7 @@ export const useAuth = () => {
       }
       
       // Si no, obtener del perfil completo
-      return await AuthService.getCurrentUser()
+      return await authService.getCurrentUser()
     } catch (error) {
       console.error('Error getting user:', error)
       return null
@@ -47,7 +50,8 @@ export const useAuth = () => {
     const getInitialSession = async () => {
       try {
         console.log('🔄 Inicializando autenticación...')
-        const session = await AuthService.getCurrentSession()
+        const authService = new AuthService()
+        const session = await authService.getCurrentSession()
         
         if (!mounted) return
 
@@ -69,7 +73,7 @@ export const useAuth = () => {
             console.log('🔄 Detectada confirmación de email en URL')
             try {
               // Establecer la sesión con los tokens de la URL
-              const { data, error } = await AuthService.supabase.auth.setSession({
+              const { data, error } = await authService.supabase.auth.setSession({
                 access_token: accessToken,
                 refresh_token: refreshToken
               })
@@ -114,7 +118,7 @@ export const useAuth = () => {
     getInitialSession()
 
     // Escuchar cambios en la autenticación de forma optimizada
-    const { data: { subscription } } = AuthService.supabase.auth.onAuthStateChange(
+    const { data: { subscription } } = authService.onAuthStateChange(
       async (event, session) => {
         if (!mounted) return
 
@@ -150,7 +154,7 @@ export const useAuth = () => {
       console.log('🔄 Iniciando sesión...')
       setAuthState(prev => ({ ...prev, loading: true }))
       
-      const response = await AuthService.signIn({ email, password })
+      const response = await authService.signIn({ email, password })
       
       if (response.success) {
         console.log('✅ Sesión iniciada correctamente')
@@ -173,7 +177,7 @@ export const useAuth = () => {
       console.log('🔄 Registrando usuario...')
       setAuthState(prev => ({ ...prev, loading: true }))
       
-      const response = await AuthService.signUp({ email, password, name, confirmPassword: password })
+      const response = await authService.signUp({ email, password, name, confirmPassword: password, acceptTerms: true })
       
       if (response.success) {
         console.log('✅ Usuario registrado correctamente')
@@ -197,7 +201,7 @@ export const useAuth = () => {
       console.log('🔄 Cerrando sesión...')
       setAuthState(prev => ({ ...prev, loading: true }))
       
-      const response = await AuthService.signOut()
+      const response = await authService.signOut()
       
       if (response.success) {
         console.log('✅ Sesión cerrada correctamente')
@@ -224,12 +228,12 @@ export const useAuth = () => {
     }
 
     try {
-      const response = await AuthService.updateProfile(authState.user.id, updates)
+      const response = await authService.updateProfile(authState.user.id, updates)
       
       if (response.success) {
         setAuthState(prev => ({
           ...prev,
-          user: response.data || prev.user
+          user: response.user || prev.user
         }))
       }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, CheckCircle, RefreshCw, ExternalLink } from 'lucide-react';
 import { environmentManager } from '../../config/environment';
-import { testSupabaseConnection } from '../../config/supabase';
+import SupabaseChecker from '../../utils/supabaseChecker';
 import { geminiService } from '../../services/geminiService';
 
 // =====================================================
@@ -40,15 +40,15 @@ const ConfigChecker: React.FC = () => {
       let geminiConnected = false;
 
       const hasRealSupabaseConfig = debugInfo.supabase.urlConfigured && 
-                                   debugInfo.supabase.keyConfigured &&
-                                   debugInfo.supabase.keyPreview !== '***e_supabase';
+                                   debugInfo.supabase.keyConfigured;
 
       const hasRealGeminiConfig = debugInfo.gemini.keyConfigured &&
                                  debugInfo.gemini.keyPreview !== '***tu_api_k';
 
       if (hasRealSupabaseConfig) {
         try {
-          supabaseConnected = await testSupabaseConnection();
+          const connectionCheck = await SupabaseChecker.checkConnection();
+          supabaseConnected = connectionCheck.isConnected;
         } catch (error) {
           console.warn('⚠️ No se pudo conectar con Supabase:', error);
         }

@@ -1,0 +1,679 @@
+/* =====================================================
+   DESKTOP STYLES - HOGARZEN
+   ===================================================== */
+
+/* =====================================================
+   DESKTOP BREAKPOINTS (1024px and up)
+   ===================================================== */
+
+@media (min-width: 1024px) {
+  
+  /* =====================================================
+     DESKTOP CONTAINERS
+     ===================================================== */
+  
+  .desktop-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .desktop-wide-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+  
+  .desktop-full-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+  
+  /* =====================================================
+     DESKTOP NAVIGATION
+     ===================================================== */
+  
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .desktop-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  .desktop-nav-item {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  .desktop-nav-item:hover {
+    background: #f3f4f6;
+    color: #0ea5e9;
+    transform: translateY(-1px);
+  }
+  
+  .desktop-nav-item.active {
+    background: #0ea5e9;
+    color: white;
+  }
+  
+  .desktop-nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #0ea5e9;
+  }
+  
+  /* =====================================================
+     DESKTOP HEADER
+     ===================================================== */
+  
+  .desktop-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1.5rem 2rem;
+    z-index: 40;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .desktop-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  /* =====================================================
+     DESKTOP CARDS
+     ===================================================== */
+  
+  .desktop-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-in-out;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .desktop-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .desktop-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  
+  .desktop-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+  }
+  
+  /* =====================================================
+     DESKTOP GRIDS
+     ===================================================== */
+  
+  .desktop-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .desktop-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .desktop-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .desktop-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .desktop-grid-6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+  
+  /* =====================================================
+     DESKTOP BUTTONS
+     ===================================================== */
+  
+  .desktop-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .desktop-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .desktop-button:hover::before {
+    left: 100%;
+  }
+  
+  .desktop-button-primary {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    color: white;
+  }
+  
+  .desktop-button-primary:hover {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+  }
+  
+  .desktop-button-secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .desktop-button-secondary:hover {
+    background: #e5e7eb;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* =====================================================
+     DESKTOP FORMS
+     ===================================================== */
+  
+  .desktop-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+  }
+  
+  .desktop-form-group {
+    margin-bottom: 2rem;
+  }
+  
+  .desktop-form-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.75rem;
+  }
+  
+  .desktop-form-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: white;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .desktop-form-input:focus {
+    outline: none;
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+    transform: translateY(-1px);
+  }
+  
+  /* =====================================================
+     DESKTOP LAYOUTS
+     ===================================================== */
+  
+  .desktop-sidebar-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+    min-height: 100vh;
+  }
+  
+  .desktop-sidebar {
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    padding: 2rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .desktop-main {
+    padding: 2rem;
+  }
+  
+  .desktop-dashboard-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    gap: 2rem;
+    min-height: 100vh;
+  }
+  
+  /* =====================================================
+     DESKTOP TABS
+     ===================================================== */
+  
+  .desktop-tabs {
+    display: flex;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 2rem;
+  }
+  
+  .desktop-tab {
+    padding: 1.25rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  .desktop-tab:hover {
+    color: #374151;
+    background: #f9fafb;
+  }
+  
+  .desktop-tab.active {
+    color: #0ea5e9;
+    border-bottom-color: #0ea5e9;
+  }
+  
+  .desktop-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #0ea5e9;
+  }
+  
+  /* =====================================================
+     DESKTOP MODALS
+     ===================================================== */
+  
+  .desktop-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 70;
+    padding: 3rem;
+    backdrop-filter: blur(4px);
+  }
+  
+  .desktop-modal-content {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 3rem;
+    width: 100%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: modalSlideIn 0.3s ease-out;
+  }
+  
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  /* =====================================================
+     DESKTOP LISTS
+     ===================================================== */
+  
+  .desktop-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .desktop-list-item {
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .desktop-list-item:hover {
+    background: #f9fafb;
+    transform: translateX(4px);
+  }
+  
+  .desktop-list-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* =====================================================
+     DESKTOP SEARCH
+     ===================================================== */
+  
+  .desktop-search {
+    position: relative;
+    max-width: 500px;
+    margin-bottom: 2rem;
+  }
+  
+  .desktop-search-input {
+    width: 100%;
+    padding: 1rem 1.25rem 1rem 3rem;
+    font-size: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: white;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .desktop-search-input:focus {
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+  }
+  
+  .desktop-search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+  }
+  
+  /* =====================================================
+     DESKTOP NOTIFICATIONS
+     ===================================================== */
+  
+  .desktop-notification {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 80;
+    max-width: 500px;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    border-left: 4px solid #0ea5e9;
+  }
+  
+  .desktop-notification.show {
+    transform: translateX(0);
+  }
+  
+  /* =====================================================
+     DESKTOP HERO SECTIONS
+     ===================================================== */
+  
+  .desktop-hero {
+    padding: 6rem 3rem;
+    text-align: center;
+    background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 50%, #ec4899 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .desktop-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+  }
+  
+  .desktop-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .desktop-hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+  
+  .desktop-hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* =====================================================
+     DESKTOP SECTIONS
+     ===================================================== */
+  
+  .desktop-section {
+    padding: 5rem 3rem;
+  }
+  
+  .desktop-section-title {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #111827;
+  }
+  
+  /* =====================================================
+     DESKTOP UTILITIES
+     ===================================================== */
+  
+  .desktop-only {
+    display: block;
+  }
+  
+  .desktop-hidden {
+    display: none;
+  }
+  
+  .desktop-text-center {
+    text-align: center;
+  }
+  
+  .desktop-text-left {
+    text-align: left;
+  }
+  
+  .desktop-text-right {
+    text-align: right;
+  }
+  
+  /* =====================================================
+     DESKTOP PERFORMANCE
+     ===================================================== */
+  
+  .desktop-will-change {
+    will-change: transform;
+  }
+  
+  .desktop-gpu-accelerated {
+    transform: translateZ(0);
+  }
+  
+  /* =====================================================
+     DESKTOP ACCESSIBILITY
+     ===================================================== */
+  
+  .desktop-focus-visible:focus-visible {
+    outline: 3px solid #0ea5e9;
+    outline-offset: 3px;
+  }
+  
+  /* =====================================================
+     DESKTOP HOVER EFFECTS
+     ===================================================== */
+  
+  .desktop-hover-lift {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .desktop-hover-lift:hover {
+    transform: translateY(-4px);
+  }
+  
+  .desktop-hover-scale {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .desktop-hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .desktop-hover-glow {
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .desktop-hover-glow:hover {
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
+  }
+  
+  /* =====================================================
+     DESKTOP ANIMATIONS
+     ===================================================== */
+  
+  .desktop-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .desktop-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .desktop-bounce-in {
+    animation: bounceIn 0.8s ease-out;
+  }
+  
+  /* =====================================================
+     DESKTOP RESPONSIVE TYPOGRAPHY
+     ===================================================== */
+  
+  .desktop-text-xs {
+    font-size: 0.75rem;
+  }
+  
+  .desktop-text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .desktop-text-base {
+    font-size: 1rem;
+  }
+  
+  .desktop-text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .desktop-text-xl {
+    font-size: 1.25rem;
+  }
+  
+  .desktop-text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  .desktop-text-3xl {
+    font-size: 1.875rem;
+  }
+  
+  .desktop-text-4xl {
+    font-size: 2.25rem;
+  }
+  
+  .desktop-text-5xl {
+    font-size: 3rem;
+  }
+  
+  .desktop-text-6xl {
+    font-size: 3.75rem;
+  }
+  
+  .desktop-text-7xl {
+    font-size: 4.5rem;
+  }
+  
+  .desktop-text-8xl {
+    font-size: 6rem;
+  }
+  
+  .desktop-text-9xl {
+    font-size: 8rem;
+  }
+} 

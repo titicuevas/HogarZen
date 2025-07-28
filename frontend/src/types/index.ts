@@ -79,6 +79,7 @@ export interface Recommendation {
 export interface LoginFormData {
   email: string
   password: string
+  rememberMe?: boolean
 }
 
 export interface RegisterFormData {
@@ -86,6 +87,7 @@ export interface RegisterFormData {
   email: string
   password: string
   confirmPassword: string
+  acceptTerms: boolean
 }
 
 // =====================================================
@@ -99,7 +101,8 @@ export interface ApiResponse<T> {
 
 export interface AuthResponse {
   success: boolean
-  data?: any
+  user?: User | null
+  message?: string
   error?: string
 }
 
@@ -132,4 +135,60 @@ export interface UserActionEvent {
   userId?: string
   data?: any
   timestamp: string
+}
+
+// =====================================================
+// TIPOS DE CHECKLISTS
+// =====================================================
+export interface Checklist {
+  id: string
+  user_id: string
+  title: string
+  description: string
+  category: ChecklistCategory
+  items: ChecklistItem[]
+  created_at: string
+  updated_at: string
+}
+
+export interface ChecklistItem {
+  id: string
+  checklist_id: string
+  title: string
+  description?: string
+  order: number
+  is_completed: boolean
+  completed_at?: string
+  created_at: string
+}
+
+export type ChecklistCategory = 
+  | 'hogar'
+  | 'trabajo'
+  | 'viaje'
+  | 'evento'
+  | 'mantenimiento'
+  | 'limpieza'
+  | 'organizacion'
+  | 'personal'
+  | 'otro'
+
+export interface ChecklistTemplate {
+  id: string
+  title: string
+  description: string
+  category: ChecklistCategory
+  items: Omit<ChecklistItem, 'id' | 'checklist_id' | 'is_completed' | 'completed_at' | 'created_at'>[]
+}
+
+export interface AIChecklistRequest {
+  description: string
+  category?: ChecklistCategory
+  complexity?: 'simple' | 'moderado' | 'complejo'
+}
+
+export interface AIChecklistResponse {
+  success: boolean
+  checklist?: ChecklistTemplate
+  error?: string
 } 

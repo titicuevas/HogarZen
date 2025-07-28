@@ -8,6 +8,9 @@ export { useAuth } from '../contexts/AuthContext'
 // Hooks de tareas
 export { useTasks } from '../contexts/TaskContext'
 
+// Hooks de checklists
+export { useChecklists } from './useChecklists'
+
 // Hooks de localStorage
 export { useLocalStorage, useTheme, useNotifications, useUserSettings } from './useLocalStorage'
 

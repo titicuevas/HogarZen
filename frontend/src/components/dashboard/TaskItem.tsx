@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { CheckCircle, Circle, Trash2, MoreVertical } from 'lucide-react'
 import { UserTask } from '../../types'
 import { showNotification } from '../../utils/notifications'
+import { getTaskIcon, getTaskEmoji, categoryEmojis } from '../../utils/taskIcons'
 
 // =====================================================
 // COMPONENTE DE TAREA INDIVIDUAL - PRINCIPIOS SOLID Y DRY
@@ -86,16 +87,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   }
 
   const getCategoryIcon = (category: string): string => {
-    const icons: Record<string, string> = {
-      seguridad: '🔒',
-      electrodomesticos: '🔌',
-      agua: '💧',
-      energia: '⚡',
-      cocina: '🍳',
-      entretenimiento: '📺',
-      general: '📋'
-    }
-    return icons[category] || icons.general
+    return categoryEmojis[category as keyof typeof categoryEmojis] || '📋'
   }
 
   // =====================================================
@@ -119,8 +111,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   return (
     <div className={`card transition-all duration-200 ${
       userTask.status 
-        ? 'bg-green-50 border-green-200' 
-        : 'hover:shadow-md'
+        ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-700' 
+        : 'hover:shadow-md dark:bg-gray-800 dark:border-gray-700'
     }`}>
       <div className="flex items-start space-x-3">
         {/* Checkbox */}
@@ -142,15 +134,20 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between">
             <div className="flex-1">
-              <h3 className={`font-medium text-zen-900 ${
-                userTask.status ? 'line-through text-zen-500' : ''
-              }`}>
-                {userTask.task?.title}
-              </h3>
+              <div className="flex items-center space-x-2">
+                <span className="text-lg" title={`Categoría: ${userTask.task?.category || 'General'}`}>
+                  {getTaskEmoji(userTask.task?.title || '', userTask.task?.category)}
+                </span>
+                <h3 className={`font-medium text-zen-900 dark:text-white ${
+                  userTask.status ? 'line-through text-zen-500 dark:text-gray-500' : ''
+                }`}>
+                  {userTask.task?.title}
+                </h3>
+              </div>
               
               {userTask.task?.description && (
                 <p className={`text-sm mt-1 ${
-                  userTask.status ? 'text-zen-400' : 'text-zen-600'
+                  userTask.status ? 'text-zen-400 dark:text-gray-500' : 'text-zen-600 dark:text-gray-300'
                 }`}>
                   {userTask.task.description}
                 </p>
@@ -165,7 +162,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
 
                 {/* Tiempo de completado */}
                 {userTask.status && userTask.completed_at && (
-                  <span className="text-xs text-zen-500">
+                  <span className="text-xs text-zen-500 dark:text-gray-400">
                     Completada a las {new Date(userTask.completed_at).toLocaleTimeString('es-ES', { 
                       hour: '2-digit', 
                       minute: '2-digit' 
@@ -189,11 +186,11 @@ export const TaskItem: React.FC<TaskItemProps> = ({
 
               {/* Dropdown menu */}
               {showMenu && (
-                <div className="absolute right-0 top-8 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+                <div className="absolute right-0 top-8 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-10">
                   <button
                     onClick={handleRemove}
                     disabled={isUpdating}
-                    className="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                    className="w-full flex items-center px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                   >
                     <Trash2 className="w-4 h-4 mr-2" />
                     Eliminar tarea
