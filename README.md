@@ -1,274 +1,349 @@
-# 🏠 HogarZen - Gestión Inteligente del Hogar
+# HogarZen - Gestión Inteligente del Hogar
 
-## 📋 Descripción
+Una aplicación web moderna para gestionar tareas del hogar de manera inteligente, con asistente de IA y checklist de salida.
 
-HogarZen es una aplicación web moderna para la gestión inteligente de tareas del hogar, construida con React, TypeScript y Supabase. La aplicación incluye funcionalidades avanzadas como generación de checklists con IA, análisis de productividad, calendario interactivo y sistema de notificaciones.
+## 🚀 Características
 
-## ✨ Características Principales
+- **Dashboard Inteligente**: Resumen visual de tareas y estadísticas
+- **Estado Vacío para Usuarios Nuevos**: Experiencia personalizada para nuevos usuarios
+- **Asistente de IA Personalizado**: Generación de checklists basadas en rutina diaria
+- **Sugerencias de Secciones**: Secciones estándar y personalizadas para checklists
+- **Checklist de Salida**: Verificaciones de seguridad antes de salir de casa
+- **Sistema de Notificaciones**: Alertas y recordatorios personalizados
+- **Modo Oscuro/Claro**: Interfaz adaptable a preferencias del usuario
+- **Calendario de Tareas**: Vista temporal de actividades
+- **Configuración Personalizada**: Ajustes de usuario y preferencias
 
-### 🎯 Dashboard Inteligente
-- **Vista principal** con resumen de tareas diarias
-- **Progreso visual** con barras de progreso animadas
-- **Sistema de iconos** inteligente con 200+ emojis contextuales
-- **Modo oscuro** completo y persistente
-- **Interfaz responsive** para todos los dispositivos
+## 🛠️ Tecnologías
 
-### 🤖 Checklists con IA
-- **Generación automática** de checklists usando Gemini AI
-- **Detección automática** de categorías basada en texto
-- **Interfaz intuitiva** para crear checklists personalizados
-- **Guardado local** con sincronización
-- **Progreso visual** de completado
+- **Frontend**: React 18 + TypeScript + Vite
+- **UI**: Tailwind CSS + Framer Motion
+- **Iconos**: Lucide React
+- **Base de Datos**: Supabase
+- **IA**: Gemini AI (Google)
+- **Notificaciones**: SweetAlert2
 
-### 📅 Calendario Interactivo
-- **Vista semanal y mensual** con navegación
-- **Detección automática** de tareas por fecha
-- **Interacción directa** - hacer clic en días para ver tareas
-- **Indicadores visuales** de tareas completadas/pendientes
-- **Resumen diario** con estadísticas
-
-### 📊 Análisis y Estadísticas
-- **Métricas de productividad** con puntuación inteligente
-- **Gráficos de progreso** semanal
-- **Estadísticas por categoría** con emojis
-- **Insights personalizados** y recomendaciones
-- **Tendencias** y patrones de uso
-
-### ⚙️ Configuración Avanzada
-- **Notificaciones personalizables** (email, push, recordatorios)
-- **Preferencias de apariencia** (tema, emojis, progreso)
-- **Configuración de privacidad** y datos
-- **Exportación de datos** en JSON
-- **Gestión de cuenta** y preferencias
-
-### 🔐 Autenticación Segura
-- **Sistema de registro y login** con Supabase
-- **Rutas protegidas** para usuarios autenticados
-- **Gestión de sesiones** persistente
-- **Validación de formularios** robusta
-
-## 🏗️ Arquitectura del Proyecto
-
-### 📁 Estructura Frontend
-```
-frontend/
-├── src/
-│   ├── components/
-│   │   ├── auth/           # Componentes de autenticación
-│   │   ├── dashboard/      # Componentes del dashboard
-│   │   ├── layout/         # Componentes de layout
-│   │   └── ui/            # Componentes UI reutilizables
-│   ├── config/            # Configuraciones
-│   ├── contexts/          # Contextos de React
-│   ├── core/              # Entidades y interfaces
-│   ├── hooks/             # Hooks personalizados
-│   ├── pages/             # Páginas de la aplicación
-│   ├── services/          # Servicios de API
-│   ├── types/             # Tipos TypeScript
-│   └── utils/             # Utilidades
-```
-
-### 📁 Estructura Backend
-```
-backend/
-├── src/
-│   ├── config/            # Configuraciones
-│   ├── controllers/       # Controladores
-│   ├── middleware/        # Middlewares
-│   ├── routes/           # Rutas de API
-│   └── services/         # Servicios
-```
-
-## 🛠️ Tecnologías Utilizadas
-
-### Frontend
-- **React 18** - Biblioteca de UI
-- **TypeScript** - Tipado estático
-- **Tailwind CSS** - Framework de estilos
-- **Vite** - Build tool
-- **React Router** - Enrutamiento
-- **Lucide React** - Iconos
-- **Supabase** - Backend as a Service
-
-### Backend
-- **Node.js** - Runtime de JavaScript
-- **Express** - Framework web
-- **Supabase** - Base de datos y autenticación
-- **Google Gemini AI** - Generación de contenido
-
-### Herramientas de Desarrollo
-- **ESLint** - Linting de código
-- **Prettier** - Formateo de código
-- **Git** - Control de versiones
-
-## 🚀 Instalación y Configuración
+## 📦 Instalación
 
 ### Prerrequisitos
-- Node.js 18+ 
+
+- Node.js (versión 18 o superior)
 - npm o yarn
-- Cuenta de Supabase
-- API Key de Google Gemini
+- Cuenta en Supabase (para la base de datos)
+- API Key de Gemini AI (opcional, para funcionalidades de IA)
 
-### 1. Clonar el repositorio
+### Pasos de Instalación
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd hogarzen
+   ```
+
+2. **Instalar dependencias**
+   ```bash
+   # Instalar todo desde la raíz (Recomendado)
+   npm run install:all
+   
+   # O instalar por separado
+   npm run install:frontend
+   npm run install:backend
+   ```
+
+3. **Configurar variables de entorno**
+   
+   Crear un archivo `.env` en la carpeta `frontend`:
+   ```env
+   VITE_SUPABASE_URL=tu_url_de_supabase
+   VITE_SUPABASE_ANON_KEY=tu_clave_anonima_de_supabase
+   VITE_GEMINI_API_KEY=tu_api_key_de_gemini
+   SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key_de_supabase
+   ```
+
+4. **Configurar Supabase**
+   
+   - Crear un proyecto en [Supabase](https://supabase.com)
+   - Configurar las tablas necesarias:
+     
+     **Opción A: Usando el SQL Editor de Supabase (Recomendado)**
+     1. Ve al SQL Editor en tu proyecto de Supabase
+     2. Copia y pega el contenido del archivo `frontend/scripts/supabase-schema.sql`
+     3. Ejecuta el script completo
+     
+     **Opción B: Usando el script automatizado**
+     ```bash
+     # Instalar dependencias adicionales para el script
+     npm install @supabase/supabase-js dotenv
+     
+     # Ejecutar el script de actualización de la base de datos
+     node scripts/update-database.js
+     ```
+   - Copiar las credenciales al archivo `.env`
+   - **Importante**: Para la Opción B necesitarás la `SUPABASE_SERVICE_ROLE_KEY`
+
+## 🚀 Ejecutar la Aplicación
+
+### 1. Configurar Variables de Entorno
+
+#### Frontend (.env.local)
+Crea un archivo `.env.local` en el directorio `packages/frontend`:
+
 ```bash
-git clone https://github.com/tu-usuario/hogarzen.git
-cd hogarzen
+# Supabase Configuration
+VITE_SUPABASE_URL=tu_url_real_de_supabase
+VITE_SUPABASE_ANON_KEY=tu_clave_anonima_real_de_supabase
+
+# Gemini AI Configuration
+VITE_GEMINI_API_KEY=tu_api_key_real_de_gemini
+
+# App Configuration
+VITE_API_URL=http://localhost:8000
+VITE_DOCKER=false
 ```
 
-### 2. Configurar variables de entorno
-```bash
-# Frontend (.env)
-VITE_SUPABASE_URL=tu_url_de_supabase
-VITE_SUPABASE_ANON_KEY=tu_anon_key_de_supabase
-VITE_GEMINI_API_KEY=tu_api_key_de_gemini
-VITE_API_URL=http://localhost:3001
+#### Backend (.env)
+Crea un archivo `.env` en el directorio `packages/backend`:
 
-# Backend (.env)
-SUPABASE_URL=tu_url_de_supabase
-SUPABASE_SERVICE_KEY=tu_service_key_de_supabase
-GEMINI_API_KEY=tu_api_key_de_gemini
-PORT=3001
+```bash
+# Supabase Configuration
+SUPABASE_URL=tu_url_real_de_supabase
+SUPABASE_ANON_KEY=tu_clave_anonima_real_de_supabase
+SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key_de_supabase
+
+# Gemini AI Configuration
+GEMINI_API_KEY=tu_api_key_real_de_gemini
+
+# Server Configuration
+PORT=8000
+NODE_ENV=development
 ```
 
-### 3. Instalar dependencias
-```bash
-# Frontend
-cd frontend
-npm install
+### 2. Corregir Base de Datos
 
-# Backend
-cd ../backend
-npm install
+Ejecuta el script de corrección en el SQL Editor de Supabase:
+
+```sql
+-- Copia y pega el contenido de scripts/fix-database.sql
 ```
 
-### 4. Ejecutar el proyecto
+### 3. Probar Conexión con Gemini
+
+```bash
+# Probar conexión básica
+node scripts/test-gemini.js
+
+# Probar generación de checklists personalizadas
+node scripts/test-checklist-generation.js
+```
+
+### 4. Ejecutar la Aplicación
+
+#### Opción A: Ejecutar todo desde la raíz (Recomendado)
+```bash
+# Instalar dependencias
+npm run install:all
+
+# Ejecutar ambos servicios
+npm run dev
+```
+
+#### Opción B: Ejecutar servicios por separado
 ```bash
 # Terminal 1 - Backend
-cd backend
-npm run dev
+npm run dev:backend
 
 # Terminal 2 - Frontend
-cd frontend
-npm run dev
+npm run dev:frontend
 ```
 
-## 📱 Uso de la Aplicación
+- Backend estará disponible en `http://localhost:8000`
+- Frontend estará disponible en `http://localhost:5173`
 
-### 1. Registro y Login
-- Crear una cuenta nueva o iniciar sesión
-- Verificar email (opcional)
-- Acceder al dashboard
+### Producción
 
-### 2. Dashboard Principal
-- Ver resumen de tareas del día
-- Agregar nuevas tareas
-- Marcar tareas como completadas
-- Ver progreso visual
-
-### 3. Checklists con IA
-- Ir a "Checklists IA"
-- Describir lo que necesitas
-- La IA generará automáticamente el checklist
-- Guardar y gestionar checklists
-
-### 4. Calendario
-- Navegar entre semanas/meses
-- Ver tareas por fecha
-- Interactuar con días específicos
-- Gestionar tareas desde el calendario
-
-### 5. Análisis
-- Ver métricas de productividad
-- Analizar tendencias
-- Obtener recomendaciones
-- Exportar datos
-
-### 6. Configuración
-- Personalizar notificaciones
-- Ajustar apariencia
-- Gestionar privacidad
-- Exportar datos
-
-## 🎨 Principios SOLID Implementados
-
-### Single Responsibility Principle (SRP)
-- Cada componente tiene una responsabilidad específica
-- Separación clara entre lógica de negocio y presentación
-
-### Open/Closed Principle (OCP)
-- Sistema de iconos extensible
-- Componentes configurables a través de props
-- Hooks reutilizables
-
-### Liskov Substitution Principle (LSP)
-- Interfaces consistentes entre componentes
-- Props tipadas correctamente
-- Comportamiento predecible
-
-### Interface Segregation Principle (ISP)
-- Interfaces específicas para cada funcionalidad
-- Props mínimas necesarias
-- Hooks especializados por dominio
-
-### Dependency Inversion Principle (DIP)
-- Dependencias inyectadas a través de props
-- Hooks como abstracciones de lógica
-- Servicios separados de componentes
-
-## 🔧 Scripts Disponibles
-
-### Frontend
 ```bash
-npm run dev          # Desarrollo
-npm run build        # Build de producción
-npm run preview      # Preview del build
-npm run lint         # Linting
-npm run test         # Tests
+# Construir la aplicación
+npm run build
+
+# Previsualizar la versión de producción
+npm run preview
 ```
 
-### Backend
+## 🛠️ Scripts Disponibles
+
+### Workspace (Raíz)
 ```bash
-npm run dev          # Desarrollo
-npm start            # Producción
-npm run lint         # Linting
+# Desarrollo
+npm run dev              # Ejecutar frontend y backend simultáneamente
+npm run dev:frontend     # Solo frontend
+npm run dev:backend      # Solo backend
+
+# Instalación
+npm run install:all      # Instalar dependencias de todos los paquetes
+npm run install:frontend # Solo frontend
+npm run install:backend  # Solo backend
+
+# Utilidades globales
+node scripts/test-gemini.js                    # Probar conexión con Gemini
+node scripts/test-checklist-generation.js      # Probar generación de checklists
 ```
 
-## 📊 Métricas del Proyecto
+### Frontend (packages/frontend)
+```bash
+# Desarrollo
+npm run dev          # Iniciar servidor de desarrollo
+npm run build        # Construir para producción
+npm run preview      # Previsualizar build de producción
 
-- **Líneas de código**: ~15,000
-- **Componentes React**: 25+
-- **Hooks personalizados**: 8
-- **Servicios**: 5
-- **Tipos TypeScript**: 50+
-- **Iconos/Emojis**: 200+
+# Testing
+npm run test         # Ejecutar tests unitarios
+npm run test:e2e     # Ejecutar tests end-to-end
+```
 
-## 🤝 Contribución
+### Backend (packages/backend)
+```bash
+# Desarrollo
+npm start            # Iniciar servidor de desarrollo
+npm run dev          # Iniciar servidor con nodemon
+```
+
+## 📁 Estructura del Proyecto (SOLID)
+
+```
+hogarzen/
+├── packages/
+│   ├── frontend/               # Aplicación React (UI Layer)
+│   │   ├── src/
+│   │   │   ├── presentation/   # Componentes de UI
+│   │   │   ├── infrastructure/ # Servicios y configuración
+│   │   │   └── core/           # Lógica de negocio
+│   │   └── package.json
+│   ├── backend/                # Servidor Node.js (Business Logic)
+│   │   ├── src/
+│   │   │   ├── config/         # Configuración
+│   │   │   ├── controllers/    # Controladores
+│   │   │   ├── middleware/     # Middleware
+│   │   │   ├── routes/         # Rutas
+│   │   │   └── services/       # Servicios
+│   │   └── package.json
+│   └── shared/                 # Tipos y utilidades compartidas
+│       ├── src/
+│       │   ├── types/          # Tipos TypeScript
+│       │   ├── interfaces/     # Interfaces
+│       │   └── utils/          # Utilidades
+│       └── package.json
+├── scripts/                    # Scripts globales
+│   ├── test-gemini.js         # Prueba conexión Gemini
+│   └── fix-database.sql       # Corrección BD
+├── docs/                       # Documentación
+├── package.json                # Workspace root
+└── README.md
+```
+
+## 🎯 Funcionalidades Principales
+
+### Dashboard
+- Resumen de tareas completadas y pendientes
+- Estadísticas de productividad
+- Acciones rápidas para crear tareas
+- Vista de tareas recientes
+
+### Estado Vacío para Usuarios Nuevos
+- Experiencia personalizada cuando el usuario no tiene tareas
+- Sugerencias de secciones para comenzar
+- Botones de acción rápida para crear primera tarea
+- Integración con asistente de IA
+
+### Asistente de IA Personalizado
+- Generación de checklists basadas en rutina diaria del usuario
+- Secciones estándar predefinidas (Rutina Matutina, Limpieza, Productividad, etc.)
+- Descripción personalizada del estilo de vida
+- Categorización automática de tareas (hogar, productividad, bienestar)
+- Priorización inteligente (alta, media, baja)
+- Integración con Gemini AI para sugerencias inteligentes
+
+### Checklist de Salida
+- Verificaciones de seguridad críticas
+- Tareas importantes y opcionales
+- Progreso visual y estadísticas
+- Vista especial para usuarios nuevos
+
+### Sistema de Notificaciones
+- Notificaciones en tiempo real
+- Diferentes tipos (info, warning, success, urgent)
+- Contador de no leídas
+- Marcado como leído
+
+## 🔧 Configuración Avanzada
+
+### Variables de Entorno
+
+| Variable | Descripción | Requerido |
+|----------|-------------|-----------|
+| `VITE_SUPABASE_URL` | URL del proyecto Supabase | Sí |
+| `VITE_SUPABASE_ANON_KEY` | Clave anónima de Supabase | Sí |
+| `VITE_GEMINI_API_KEY` | API Key de Gemini AI | No (opcional) |
+
+### Personalización
+
+- **Temas**: Modificar `tailwind.config.js` para cambiar colores
+- **Componentes**: Editar componentes en `src/presentation/components/`
+- **Servicios**: Configurar servicios en `src/infrastructure/services/`
+
+## 🧪 Testing
+
+```bash
+# Ejecutar todos los tests
+npm test
+
+# Tests en modo watch
+npm run test:watch
+
+# Tests con cobertura
+npm run test:coverage
+
+# Tests unitarios
+npm run test:unit
+
+# Tests de integración
+npm run test:integration
+```
+
+## 📝 Scripts Disponibles
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Inicia el servidor de desarrollo |
+| `npm run build` | Construye la aplicación para producción |
+| `npm run preview` | Previsualiza la versión de producción |
+| `npm run lint` | Ejecuta el linter |
+| `npm test` | Ejecuta los tests |
+
+## 🤝 Contribuir
 
 1. Fork el proyecto
-2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
 3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir un Pull Request
+5. Abre un Pull Request
 
-## 📝 Licencia
+## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
-## 👥 Autores
+## 🆘 Soporte
 
-- **Tu Nombre** - *Desarrollo inicial* - [TuUsuario](https://github.com/TuUsuario)
+Si tienes problemas o preguntas:
 
-## 🙏 Agradecimientos
+1. Revisa la documentación
+2. Busca en los issues existentes
+3. Crea un nuevo issue con detalles del problema
 
-- **Supabase** por el backend as a service
-- **Google Gemini** por la IA
-- **Tailwind CSS** por el framework de estilos
-- **React Team** por la biblioteca
+## 🎉 Agradecimientos
 
-## 📞 Soporte
-
-Si tienes alguna pregunta o problema, por favor abre un issue en el repositorio.
-
----
-
-**HogarZen** - Haciendo la gestión del hogar más inteligente y zen 🧘‍♀️ 
+- [React](https://reactjs.org/) - Framework de UI
+- [Tailwind CSS](https://tailwindcss.com/) - Framework de CSS
+- [Supabase](https://supabase.com/) - Backend como servicio
+- [Gemini AI](https://ai.google.dev/) - Inteligencia artificial
+- [Lucide](https://lucide.dev/) - Iconos
+- [Framer Motion](https://www.framer.com/motion/) - Animaciones 

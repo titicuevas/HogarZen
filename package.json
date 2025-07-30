@@ -1,0 +1,38 @@
+{
+  "name": "hogarzen-workspace",
+  "version": "1.0.0",
+  "description": "HogarZen - Gestión Inteligente del Hogar - Workspace",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "npm run dev --workspace=packages/frontend",
+    "dev:backend": "npm run dev --workspace=packages/backend",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf node_modules",
+    "install:all": "npm install && npm run install:frontend && npm run install:backend",
+    "install:frontend": "npm install --workspace=packages/frontend",
+    "install:backend": "npm install --workspace=packages/backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "hogarzen",
+    "task-management",
+    "ai",
+    "react",
+    "nodejs",
+    "supabase"
+  ],
+  "author": "HogarZen Team",
+  "license": "MIT"
+} 
